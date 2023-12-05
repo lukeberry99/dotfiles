@@ -9,6 +9,5 @@ nvim.backup
 raycast/extensions
 stetic/library-cache
 stripe
-tmux
 wezterm
 xbuild
