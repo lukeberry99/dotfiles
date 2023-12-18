@@ -30,10 +30,6 @@ return {
 		{
 			"onsails/lspkind.nvim",
 		},
-		-- Copilot (just to make sure it's installed before config is called)
-		-- I don't personally like copilot as a cmp source, so it's not here.
-		-- Do not use config or opts here.
-		{ "zbirenbaum/copilot.lua" },
 	},
 	config = function()
 		-- [[ Configure nvim-cmp ]]
@@ -68,15 +64,14 @@ return {
 					ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
 				}),
 			},
-			-- window = {
-			-- 	documentation = cmp.config.window.bordered(),
-			-- 	completion = cmp.config.window.bordered({
-			-- 		winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
-			-- 	}),
-			-- },
+			window = {
+				documentation = cmp.config.window.bordered(),
+				completion = cmp.config.window.bordered({
+					winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
+				}),
+			},
 			experimental = {
-				-- true makes me confused on what is cmp and what is copilot
-				ghost_text = false,
+				ghost_text = true,
 			},
 
 			-- These mappings are active even if cmp menu is not open!
