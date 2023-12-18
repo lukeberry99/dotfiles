@@ -9,5 +9,7 @@ nvim.backup
 raycast/extensions
 stetic/library-cache
 stripe
-wezterm
 xbuild
+spicetify/
+starship.toml
+nvim-oviwrite/
