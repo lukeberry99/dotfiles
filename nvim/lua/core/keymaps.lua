@@ -1,7 +1,11 @@
 local keymap = vim.keymap.set
+
 -- Clear search highlight
 keymap({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>")
 keymap("n", "<leader>h", "<cmd>nohl<CR>", { desc = "No HL Search" })
+
+-- Ex mode sucks
+keymap("n", "Q", "<Nop>", { silent = true })
 
 -- LSP mappings
 keymap("n", "K", function()
