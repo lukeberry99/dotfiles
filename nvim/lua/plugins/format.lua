@@ -8,23 +8,23 @@ return {
 		formatter.setup({
 			filetype = {
 				javascript = {
-					prettierd
+					prettierd,
 				},
 				javascriptreact = {
-					prettierd
+					prettierd,
 				},
 				typescript = {
-					prettierd
+					prettierd,
 				},
 				typescriptreact = {
-					prettierd
+					prettierd,
 				},
 				lua = {
-					stylua
-				}
-			}
+					stylua,
+				},
+			},
 		})
 		-- Disabled in favour of null-ls, but shall see
 	end,
-	enabled = false
+	enabled = false,
 }

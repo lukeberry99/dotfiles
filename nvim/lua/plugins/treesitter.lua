@@ -9,13 +9,13 @@ return {
 		-- Auto close/rename html tags
 		"windwp/nvim-ts-autotag",
 	},
-	config = function() 
+	config = function()
 		local configs = require("nvim-treesitter.configs")
 		configs.setup({
-			ensure_installed = {"markdown_inline", "regex"},
+			ensure_installed = { "markdown_inline", "regex" },
 			auto_install = true,
 			matchup = {
-				enable = false
+				enable = false,
 			},
 			highlight = {
 				enable = true,
@@ -36,5 +36,5 @@ return {
 				enable = true,
 			},
 		})
-	end
+	end,
 }

@@ -64,13 +64,11 @@ return {
 									"jdtls",
 									"--jvm-arg=" .. string.format(
 										"-javaagent:%s",
-										vim.fn.expand(
-											"$MASON/share/jdtls/lombok.jar")
+										vim.fn.expand("$MASON/share/jdtls/lombok.jar")
 									),
 								},
 								root_dir = vim.fs.dirname(
-									vim.fs.find({ "gradlew", ".git", "mvnw" },
-										{ upward = true })[1]
+									vim.fs.find({ "gradlew", ".git", "mvnw" }, { upward = true })[1]
 								),
 							})
 						end,
@@ -95,8 +93,7 @@ return {
 				signs = true,
 				severity_sort = true,
 				format = function(diagnostic)
-					return string.format("%s [%s] (%s)", diagnostic.message, diagnostic.code,
-						diagnostic.source)
+					return string.format("%s [%s] (%s)", diagnostic.message, diagnostic.code, diagnostic.source)
 				end,
 				suffix = "",
 			},
@@ -148,7 +145,6 @@ return {
 				local client_id = args.data.client_id
 				local client = vim.lsp.get_client_by_id(client_id)
 				local bufnr = args.buf
-				local buf_ft = vim.bo.filetype
 
 				if client == nil or bufnr == nil then
 					return

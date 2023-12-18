@@ -11,19 +11,19 @@ return {
 			sources = {
 				-- JS/TS
 				code_actions.eslint.with({
-					prefer_local = "node_modules/.bin"
+					prefer_local = "node_modules/.bin",
 				}),
 				diagnostics.eslint.with({
-					prefer_local = "node_modules/.bin"
+					prefer_local = "node_modules/.bin",
 				}),
 				formatting.prettierd.with({
-					prefer_local = "node_modules/.bin"
+					prefer_local = "node_modules/.bin",
 				}),
 				-- Python
 				formatting.black,
 				-- Lua
-				formatting.stylua
-			}
+				formatting.stylua,
+			},
 		})
-	end
+	end,
 }

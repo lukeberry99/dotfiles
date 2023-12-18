@@ -97,7 +97,7 @@ return {
 
 					if copilot_available and copilot_suggestion.is_visible() then
 						copilot_suggestion.accept()
-						-- If it's not, accept the luasnip expansion if it's available
+					-- If it's not, accept the luasnip expansion if it's available
 					elseif luasnip.expand_or_locally_jumpable() then
 						luasnip.expand_or_jump()
 					else
