@@ -59,6 +59,7 @@ if which_key_status then
 			r = { "<cmd>Telescope oldfiles<cr>", "Recent files" },
 			l = { "<cmd>Telescope resume<cr>", "Resume last search" },
 			c = { "<cmd>Telescope colorscheme<cr>", "Pick colorscheme" },
+			s = { "<cmd>Telescope lsp_document_symbols<cr>", "Symbols" },
 			u = {
 				function()
 					vim.cmd("UndotreeToggle")
