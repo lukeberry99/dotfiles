@@ -1,3 +1,6 @@
+-- Leader
+vim.g.mapleader = " "
+
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
 vim.cmd("colorscheme rose-pine-moon")
