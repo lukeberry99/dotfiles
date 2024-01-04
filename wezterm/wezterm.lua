@@ -3,7 +3,7 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 
 local config = {
-	color_scheme = "Kanagawa (Gogh)",
+	color_scheme = "rose-pine-moon",
 	font = wezterm.font("Geist Mono"),
 	font_size = 17.0,
 	audible_bell = "Disabled",
