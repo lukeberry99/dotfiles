@@ -2,6 +2,6 @@
 vim.g.mapleader = " "
 
 require("luke.lazy")
-require("luke.keymaps")
 require("luke.prefs")
+require("luke.keymaps")
 require("luke.autocommands")
