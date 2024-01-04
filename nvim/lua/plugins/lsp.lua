@@ -5,7 +5,6 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 
 		"folke/neodev.nvim",
-		"ray-x/lsp_signature.nvim",
 	},
 
 	config = function()
@@ -96,15 +95,6 @@ return {
 					return string.format("%s [%s] (%s)", diagnostic.message, diagnostic.code, diagnostic.source)
 				end,
 				suffix = "",
-			},
-		})
-
-		-- Signature help
-		require("lsp_signature").setup({
-			bind = true,
-			hint_enable = false,
-			handler_opts = {
-				border = "rounded",
 			},
 		})
 
