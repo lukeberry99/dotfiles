@@ -1,4 +1,6 @@
 return {
+	{ "shaunsingh/oxocarbon.nvim" },
+	{ "ellisonleao/gruvbox.nvim" },
 	{
 		"rebelot/kanagawa.nvim",
 		priority = 1000,
