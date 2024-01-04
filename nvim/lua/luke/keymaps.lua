@@ -42,11 +42,7 @@ keymap("n", "]d", function()
 	vim.diagnostic.goto_next()
 end, { desc = "Go to next error" })
 
--- NvimTree (file manager)
-local tree_status, _ = pcall(require, "nvim-tree")
-if tree_status then
-	keymap("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "File navigation" })
-end
+keymap("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "File navigation" })
 -- WhichKey (leader) mappings
 local which_key_status, which_key = pcall(require, "which-key")
 if which_key_status then
