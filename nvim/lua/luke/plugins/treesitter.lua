@@ -12,6 +12,9 @@ return {
 	config = function()
 		local configs = require("nvim-treesitter.configs")
 		configs.setup({
+			modules = {},
+			sync_install = false,
+			ignore_install = {},
 			ensure_installed = { "markdown_inline", "regex" },
 			auto_install = true,
 			matchup = {
