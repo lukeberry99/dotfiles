@@ -7,8 +7,8 @@ return {
 			vim.cmd("colorscheme oxocarbon")
 		end,
 	},
-	{ "ellisonleao/gruvbox.nvim", enabled = false },
-	{ "rebelot/kanagawa.nvim", enabled = false },
+	{ "ellisonleao/gruvbox.nvim" },
+	{ "rebelot/kanagawa.nvim" },
 	{
 		"rose-pine/neovim",
 		name = "rose-pine",

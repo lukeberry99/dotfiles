@@ -6,7 +6,6 @@ return {
 
 		"folke/neodev.nvim",
 	},
-
 	config = function()
 		require("mason").setup()
 
