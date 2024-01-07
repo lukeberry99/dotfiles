@@ -17,16 +17,6 @@ return {
 		{ "hrsh7th/cmp-buffer" },
 		{ "hrsh7th/cmp-path" },
 
-		-- Adds a number of user-friendly snippets
-		-- Auto pairs
-		{
-			"windwp/nvim-autopairs",
-			opts = {
-				check_ts = true,
-				enable_check_bracket_line = false,
-			}, -- this is equalent to setup({}) function
-		},
-		-- Prettier cmp formatting
 		{
 			"onsails/lspkind.nvim",
 		},
@@ -41,10 +31,6 @@ return {
 
 		require("luasnip.loaders.from_vscode").lazy_load()
 		luasnip.config.setup({})
-
-		-- Appends function call '()' after completion
-		local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
 		cmp.setup({
 			-- Preselects the first item
