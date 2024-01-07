@@ -42,6 +42,9 @@ keymap("n", "]d", function()
 	vim.diagnostic.goto_next()
 end, { desc = "Go to next error" })
 
+keymap("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move line down" })
+keymap("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move line up" })
+
 keymap("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "File navigation" })
 -- WhichKey (leader) mappings
 local which_key_status, which_key = pcall(require, "which-key")
