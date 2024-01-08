@@ -35,7 +35,7 @@ vim.opt.sidescrolloff = 8
 
 vim.opt.showmode = false
 
-vim.opt.conceallevel = 0
+vim.opt.conceallevel = 1
 vim.opt.colorcolumn = "120"
 
 vim.opt.signcolumn = "yes:1"

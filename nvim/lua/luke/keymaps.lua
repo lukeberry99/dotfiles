@@ -7,6 +7,8 @@ keymap("n", "<leader>h", "<cmd>nohl<CR>", { desc = "No HL Search" })
 -- Ex mode sucks
 keymap("n", "Q", "<Nop>", { silent = true })
 
+keymap("n", "<Leader>bd", "<cmd>bd<CR>", { desc = "" })
+
 -- LSP mappings
 keymap("n", "K", function()
 	vim.lsp.buf.hover()

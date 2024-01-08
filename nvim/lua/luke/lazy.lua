@@ -19,6 +19,6 @@ require("lazy").setup({
 	{ import = "luke.plugins.languages" },
 }, {
 	change_detection = {
-		notify = true,
+		notify = false,
 	},
 })

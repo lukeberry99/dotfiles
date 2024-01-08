@@ -1,9 +1,13 @@
 local k = require("utils/keys")
 local wezterm = require("wezterm")
 local act = wezterm.action
+local colors = require("colors/rose-pine").colors()
+local window_frame = require("colors/rose-pine").window_frame()
 
 local config = {
-	color_scheme = "Oxocarbon Dark",
+	colors = colors,
+	window_frame = window_frame,
+	-- color_scheme = "Rose Pine Moon(Gogh)",
 	font = wezterm.font("Geist Mono"),
 	font_size = 18.0,
 	audible_bell = "Disabled",
