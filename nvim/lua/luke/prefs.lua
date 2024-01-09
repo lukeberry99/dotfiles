@@ -83,3 +83,5 @@ if vim.fn.executable("rg") then
 	vim.opt.grepprg = "rg --vimgrep --no-heading"
 	vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
 end
+
+vim.cmd([[autocmd FileType markdown set tw=80 ]])
