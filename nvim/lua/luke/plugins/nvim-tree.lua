@@ -31,8 +31,9 @@ return {
 			},
 			view = {
 				width = 30,
-				relativenumber = true,
-				adaptive_size = true,
+				relativenumber = false,
+				number = false,
+				adaptive_size = false,
 				side = "right",
 			},
 			renderer = {
@@ -55,9 +56,5 @@ return {
 				},
 			},
 		})
-
-		if vim.fn.argc(-1) == 0 then
-			vim.cmd("NvimTreeFocus")
-		end
 	end,
 }
