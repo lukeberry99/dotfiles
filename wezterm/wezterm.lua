@@ -1,26 +1,23 @@
 local k = require("utils/keys")
 local wezterm = require("wezterm")
 local act = wezterm.action
-local colors = require("colors/rose-pine").colors()
-local window_frame = require("colors/rose-pine").window_frame()
 
 local config = {
-	colors = colors,
-	window_frame = window_frame,
-	-- color_scheme = "Rose Pine Moon(Gogh)",
+	color_scheme = "Oxocarbon Dark",
 	font = wezterm.font("Geist Mono"),
-	font_size = 18.0,
+	font_size = 16.0,
 	audible_bell = "Disabled",
 	enable_tab_bar = false,
 	native_macos_fullscreen_mode = false,
 	window_close_confirmation = "NeverPrompt",
+	window_background_opacity = 1,
 	window_decorations = "RESIZE",
 
 	window_padding = {
 		left = 25,
-		right = 25,
-		top = 8,
-		bottom = 8,
+		right = 20,
+		top = 30,
+		bottom = 20,
 	},
 
 	keys = {
@@ -45,7 +42,6 @@ local config = {
 		k.cmd_to_tmux_prefix("w", "x"), -- kill window
 		k.cmd_to_tmux_prefix("t", "c"), -- new window
 		k.cmd_to_tmux_prefix("u", "["), -- vim mode
-		k.cmd_to_tmux_prefix(",", ","), -- open nvim on ~/dotfiles
 
 		-- t-smart-session-picker
 		{

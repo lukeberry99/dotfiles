@@ -72,6 +72,18 @@ if which_key_status then
 		},
 		r = {
 			name = "LSP",
+			R = {
+				"<CMD>LspRestart<CR>",
+				"Restart",
+			},
+			s = {
+				"<CMD>LspStop<CR>",
+				"Stop",
+			},
+			S = {
+				"<CMD>LspStart<CR>",
+				"Start",
+			},
 			r = {
 				function()
 					vim.lsp.buf.rename()

@@ -1,44 +1,63 @@
 return {
 	"nvim-tree/nvim-tree.lua",
-	version = "*",
-	lazy = false,
-	dependencies = {
-		"nvim-tree/nvim-web-devicons",
-		"nvim-lua/plenary.nvim",
-		{ "antosha417/nvim-lsp-file-operations" },
-	},
 	config = function()
 		require("nvim-tree").setup({
-			view = {
-				adaptive_size = true,
-				side = "right",
-			},
-			sync_root_with_cwd = true,
-			respect_buf_cwd = true,
-			select_prompts = true,
-			update_focused_file = {
-				enable = true,
-				update_root = true,
-			},
-			diagnostics = {
-				enable = true,
-				show_on_dirs = false,
-				show_on_open_dirs = true,
-			},
+			on_attach = function(bufnr)
+				local api = require("nvim-tree.api")
+
+				local function opts(desc)
+					return {
+						desc = "nvim-tree: " .. desc,
+						buffer = bufnr,
+						noremap = true,
+						silent = true,
+						nowait = true,
+					}
+				end
+
+				-- default mappings
+				api.config.mappings.default_on_attach(bufnr)
+
+				-- custom mappings
+				vim.keymap.set("n", "t", api.node.open.tab, opts("Tab"))
+			end,
 			actions = {
-				change_dir = {
-					enable = true,
-					global = true,
-				},
 				open_file = {
 					quit_on_open = true,
 				},
 			},
-			git = {
-				-- Disable ignoring files
-				ignore = false,
+			sort = {
+				sorter = "case_sensitive",
+			},
+			view = {
+				width = 30,
+				relativenumber = true,
+				adaptive_size = true,
+				side = "right",
+			},
+			renderer = {
+				group_empty = true,
+			},
+			filters = {
+				dotfiles = true,
+				custom = {
+					"node_modules/.*",
+				},
+			},
+			log = {
+				enable = true,
+				truncate = true,
+				types = {
+					diagnostics = true,
+					git = true,
+					profile = true,
+					watcher = true,
+				},
 			},
 		})
-		require("lsp-file-operations").setup()
+
+		if vim.fn.argc(-1) == 0 then
+			vim.cmd("NvimTreeFocus")
+		end
 	end,
 }
