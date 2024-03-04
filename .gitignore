@@ -1,7 +1,6 @@
 NuGet
 alacritty
 configstore
-fish
 gh
 github-copilot
 lazygit
@@ -13,3 +12,4 @@ xbuild
 spicetify/
 starship.toml
 nvim-oviwrite/
+fish/fish_variables
