@@ -49,9 +49,11 @@ return {
 	{
 		"rcarriga/nvim-notify",
 		opts = {
-			timeout = 5000,
+			timeout = 2000,
 			background_colour = "#000000",
 			render = "wrapped-compact",
+			stages = "slide",
+			top_down = false,
 		},
 	},
 
