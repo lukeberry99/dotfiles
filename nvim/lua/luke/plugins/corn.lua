@@ -1,1 +1,0 @@
-return { "RaafatTurki/corn.nvim" }
