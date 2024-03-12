@@ -441,4 +441,10 @@ require("lazy").setup({
 			{ "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
 		},
 	},
+	{
+		"karb94/neoscroll.nvim",
+		opts = {
+			hide_cursor = false,
+		},
+	},
 })
