@@ -67,6 +67,11 @@ vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right win
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the upper window" })
 
+-- Buffers
+vim.keymap.set("n", "<leader>bdd", "<cmd>bd<cr>", { desc = "[B]uffer [D]elete" })
+vim.keymap.set("n", "<leader>bda", "<cmd>%bd<cr>", { desc = "[B]uffer [D]elete [A]ll" })
+vim.keymap.set("n", "<leader>bdb", "<cmd>%bd|e#<cr>", { desc = "[B]uffer [D]elete [B]ut this one" })
+
 -- Highlight when yanking
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking text",
@@ -446,5 +451,16 @@ require("lazy").setup({
 		opts = {
 			hide_cursor = false,
 		},
+	},
+	{
+		"stevearc/oil.nvim",
+		opts = {},
+		keys = {
+			{ "<leader>e", "<cmd>Oil<cr>", { desc = "Open [E]xplorer" } },
+		},
+	},
+	{
+		"pwntester/octo.nvim",
+		opts = {},
 	},
 })
