@@ -239,7 +239,6 @@ require("lazy").setup({
 
 			local servers = {
 				gopls = {},
-				tsserver = {},
 				tailwindcss = {},
 				lua_ls = {
 					settings = {
@@ -294,8 +293,12 @@ require("lazy").setup({
 			},
 			formatters_by_ft = {
 				lua = { "stylua" },
-				javascript = { { "prettierd", "prettier" } },
-				typescript = { { "pretteird", "prettier" } },
+				javascript = { { "prettier" } },
+				typescript = { { "prettier" } },
+				typescriptreact = { { "prettier" } },
+				javascriptreact = { { "prettier" } },
+				json = { { "prettier" } },
+				markdown = { { "prettier" } },
 			},
 		},
 	},
@@ -401,6 +404,7 @@ require("lazy").setup({
 		config = function()
 			require("mini.ai").setup({ n_lines = 500 })
 			require("mini.surround").setup()
+			require("mini.starter").setup()
 
 			local statusline = require("mini.statusline")
 			statusline.setup({ use_icons = vim.g.have_nerd_font })
@@ -461,6 +465,17 @@ require("lazy").setup({
 	},
 	{
 		"pwntester/octo.nvim",
+		config = function()
+			require("octo").setup({
+				suppress_missing_scope = {
+					projects_v2 = true,
+				},
+			})
+		end,
+	},
+	{
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
 		opts = {},
 	},
 })
