@@ -4,8 +4,7 @@ local act = wezterm.action
 
 local config = {
 	color_scheme = "Oxocarbon Dark",
-	font = wezterm.font("Geist Mono"),
-	font_size = 16.0,
+	font_size = 14.0,
 	audible_bell = "Disabled",
 	enable_tab_bar = false,
 	native_macos_fullscreen_mode = false,
@@ -14,10 +13,10 @@ local config = {
 	window_decorations = "RESIZE",
 
 	window_padding = {
-		left = 25,
-		right = 20,
-		top = 30,
-		bottom = 20,
+		left = 5,
+		right = 5,
+		top = 5,
+		bottom = 5,
 	},
 
 	keys = {
