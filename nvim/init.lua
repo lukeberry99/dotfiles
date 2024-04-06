@@ -72,6 +72,9 @@ vim.keymap.set("n", "<leader>bdd", "<cmd>bd<cr>", { desc = "[B]uffer [D]elete" }
 vim.keymap.set("n", "<leader>bda", "<cmd>%bd<cr>", { desc = "[B]uffer [D]elete [A]ll" })
 vim.keymap.set("n", "<leader>bdb", "<cmd>%bd|e#<cr>", { desc = "[B]uffer [D]elete [B]ut this one" })
 
+-- Ugly gross
+vim.g["test#strategy"] = "vimux"
+
 -- Highlight when yanking
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking text",
@@ -384,7 +387,14 @@ require("lazy").setup({
 		config = function()
 			vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 			vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-			vim.cmd([[colorscheme oxocarbon]])
+			-- vim.cmd([[colorscheme oxocarbon]])
+		end,
+	},
+	{
+		"rose-pine/neovim",
+		name = "rose-pine",
+		config = function()
+			vim.cmd([[colorscheme rose-pine]])
 		end,
 	},
 	{
@@ -472,10 +482,26 @@ require("lazy").setup({
 				},
 			})
 		end,
+		keys = {
+			{ "<leader>gp", "<cmd>Octo pr list<cr>", { desc = "Open [G]ithub [P]rs" } },
+			{ "<leader>grs", "<cmd>Octo review start<cr>", { desc = "[G]ithub [R]eview [S]tart" } },
+			{ "<leader>grS", "<cmd>Octo review submit<cr>", { desc = "[G]ithub [R]eview [S]ubmit" } },
+		},
 	},
 	{
 		"pmizio/typescript-tools.nvim",
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
 		opts = {},
+	},
+	{
+		"vim-test/vim-test",
+		dependencies = { "preservim/vimux" },
+		keys = {
+			{ "<leader>tt", "<cmd>TestFile<cr>", { desc = "[T]est [T]est" } },
+			{ "<leader>tn", "<cmd>TestNearest<cr>", { desc = "[T]est [N]earest" } },
+			{ "<leader>ts", "<cmd>TestSuite<cr>", { desc = "[T]est [S]uite" } },
+			{ "<leader>tl", "<cmd>TestLast<cr>", { desc = "[T]est [L]ast" } },
+			{ "<leader>tv", "<cmd>TestVisit<cr>", { desc = "[T]est [V]isit" } },
+		},
 	},
 })
