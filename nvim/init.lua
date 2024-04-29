@@ -72,6 +72,47 @@ vim.keymap.set("n", "<leader>bdd", "<cmd>bd<cr>", { desc = "[B]uffer [D]elete" }
 vim.keymap.set("n", "<leader>bda", "<cmd>%bd<cr>", { desc = "[B]uffer [D]elete [A]ll" })
 vim.keymap.set("n", "<leader>bdb", "<cmd>%bd|e#<cr>", { desc = "[B]uffer [D]elete [B]ut this one" })
 
+-- Obsidian
+vim.keymap.set("n", "<leader>oo", ":cd ~/Library/Mobile Documents/iCloud~md~obsidian/Documents/zettelkasten<cr>", {
+	desc = "[O]bsidian [O]pen Vaul",
+})
+vim.keymap.set("n", "<leader>on", ":ObsidianTemplate note<cr> :lua vim.cmd([[1,/^\\S/s/^\\n\\{1,}//]])<cr>", {
+	desc = "[O]bsidian [N]ew Note",
+})
+-- strip date from note title and replace dashes with spaces
+-- must have cursor on title
+vim.keymap.set("n", "<leader>of", ":s/\\(# \\)[^_]*_/\\1/ | s/-/ /g<cr>", { desc = "[O]bsidian [F]ormat" })
+
+-- search for files in full vault
+vim.keymap.set(
+	"n",
+	"<leader>os",
+	':Telescope find_files search_dirs={"~/Library/Mobile Documents/iCloud~md~obsidian/Documents/zettelkasten"}<cr>',
+	{
+		desc = "[O]bsidian [S]earch",
+	}
+)
+-- grep for files in full vault
+vim.keymap.set(
+	"n",
+	"<leader>og",
+	":Telescope live_grep search_dirs={'~/Library/Mobile Documents/iCloud~md~obsidian/Documents/zettelkasten'}<cr>",
+	{
+		desc = "[O]bsidian [G]rep",
+	}
+)
+-- move file in current buffer to zettelkasten folder
+vim.keymap.set(
+	"n",
+	"<leader>ok",
+	":!mv '%p' ~/Library/Mobile Documents/iCloud~md~obsidian/Documents/zettelkasten<cr>:bd<cr>",
+	{
+		desc = "[O]bsidian [K]eep",
+	}
+)
+-- delete file in current buffer
+vim.keymap.set("n", "<leader>odd", ":!rm '%:p'<cr>:bd<cr>", { desc = "[O]bsidian [D]elete" })
+
 -- Ugly gross
 vim.g["test#strategy"] = "vimux"
 
@@ -503,5 +544,50 @@ require("lazy").setup({
 			{ "<leader>tl", "<cmd>TestLast<cr>", { desc = "[T]est [L]ast" } },
 			{ "<leader>tv", "<cmd>TestVisit<cr>", { desc = "[T]est [V]isit" } },
 		},
+	},
+	{
+		"epwalsh/obsidian.nvim",
+		version = "*",
+		lazy = true,
+		ft = "markdown",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		config = function()
+			require("obsidian").setup({
+				workspaces = {
+					{
+						name = "zettelkasten",
+						path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/zettelkasten/",
+					},
+				},
+				notes_subdir = "inbox",
+				new_notes_location = "notes_subdir",
+
+				disable_formatter = true,
+				templates = {
+					subdir = "templates",
+					date_format = "%Y-%m-%d",
+					time_format = "%H:%M:%S",
+				},
+
+				mappings = {
+					["gf"] = {
+						action = function()
+							return require("obsidian").util.gf_passthrough()
+						end,
+						opts = {
+							noremap = false,
+							expr = true,
+							buffer = true,
+						},
+					},
+				},
+				completion = {
+					nvim_cmp = true,
+					min_chars = 2,
+				},
+			})
+		end,
 	},
 })
