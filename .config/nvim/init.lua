@@ -7,6 +7,9 @@ vim.g.have_nerd_font = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+-- Need this for the obsidian plugin but I don't think I want it
+vim.opt.conceallevel = 2
+
 vim.opt.mouse = "a"
 
 vim.opt.showmode = false
@@ -73,8 +76,8 @@ vim.keymap.set("n", "<leader>bda", "<cmd>%bd<cr>", { desc = "[B]uffer [D]elete [
 vim.keymap.set("n", "<leader>bdb", "<cmd>%bd|e#<cr>", { desc = "[B]uffer [D]elete [B]ut this one" })
 
 -- Obsidian
-vim.keymap.set("n", "<leader>oo", ":cd ~/Library/Mobile Documents/iCloud~md~obsidian/Documents/zettelkasten<cr>", {
-	desc = "[O]bsidian [O]pen Vaul",
+vim.keymap.set("n", "<leader>oo", ":cd ~/Library/Mobile Documents/iCloud~md~obsidian/Documents/vault<cr>", {
+	desc = "[O]bsidian [O]pen Vault",
 })
 vim.keymap.set("n", "<leader>on", ":ObsidianTemplate note<cr> :lua vim.cmd([[1,/^\\S/s/^\\n\\{1,}//]])<cr>", {
 	desc = "[O]bsidian [N]ew Note",
@@ -83,29 +86,11 @@ vim.keymap.set("n", "<leader>on", ":ObsidianTemplate note<cr> :lua vim.cmd([[1,/
 -- must have cursor on title
 vim.keymap.set("n", "<leader>of", ":s/\\(# \\)[^_]*_/\\1/ | s/-/ /g<cr>", { desc = "[O]bsidian [F]ormat" })
 
--- search for files in full vault
-vim.keymap.set(
-	"n",
-	"<leader>os",
-	':Telescope find_files search_dirs={"~/Library/Mobile Documents/iCloud~md~obsidian/Documents/zettelkasten"}<cr>',
-	{
-		desc = "[O]bsidian [S]earch",
-	}
-)
--- grep for files in full vault
-vim.keymap.set(
-	"n",
-	"<leader>og",
-	":Telescope live_grep search_dirs={'~/Library/Mobile Documents/iCloud~md~obsidian/Documents/zettelkasten'}<cr>",
-	{
-		desc = "[O]bsidian [G]rep",
-	}
-)
 -- move file in current buffer to zettelkasten folder
 vim.keymap.set(
 	"n",
 	"<leader>ok",
-	":!mv '%p' ~/Library/Mobile Documents/iCloud~md~obsidian/Documents/zettelkasten<cr>:bd<cr>",
+	":!mv '%p' ~/Library/Mobile Documents/iCloud~md~obsidian/Documents/vault/zettelkasten<cr>:bd<cr>",
 	{
 		desc = "[O]bsidian [K]eep",
 	}
@@ -209,6 +194,23 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
 			vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = "[S]earch Recent Files" })
 			vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[S]earch existing buffers" })
+			-- Obsidian
+			-- search for files in full vault
+			vim.keymap.set("n", "<leader>os", function()
+				builtin.find_files({
+					search_dirs = { "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/vault" },
+				})
+			end, {
+				desc = "[O]bsidian [S]earch",
+			})
+			-- grep for files in full vault
+			vim.keymap.set("n", "<leader>og", function()
+				builtin.live_grep({
+					search_dirs = { "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/vault" },
+				})
+			end, {
+				desc = "[O]bsidian [G]rep",
+			})
 
 			vim.keymap.set("n", "<leader>/", function()
 				builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
@@ -558,7 +560,7 @@ require("lazy").setup({
 				workspaces = {
 					{
 						name = "zettelkasten",
-						path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/zettelkasten/",
+						path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/vault/",
 					},
 				},
 				notes_subdir = "inbox",
@@ -590,4 +592,5 @@ require("lazy").setup({
 			})
 		end,
 	},
+	{ "ellisonleao/glow.nvim", config = true, cmd = "Glow" },
 })
