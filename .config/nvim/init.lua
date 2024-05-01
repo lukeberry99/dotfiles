@@ -595,4 +595,7 @@ require("lazy").setup({
 		end,
 	},
 	{ "ellisonleao/glow.nvim", config = true, cmd = "Glow" },
+	{
+		"tpope/vim-fugitive",
+	},
 })
