@@ -2,3 +2,4 @@
 .config/raycast/config.json
 .config/tmux/plugins
 .config/raycast/extensions
+.config/fish/fish_variables
