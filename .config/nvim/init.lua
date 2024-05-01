@@ -286,6 +286,8 @@ require("lazy").setup({
 			local servers = {
 				gopls = {},
 				tailwindcss = {},
+				prettier = {},
+				tsserver = {},
 				lua_ls = {
 					settings = {
 						Lua = {
