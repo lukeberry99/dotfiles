@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # Directory containing markdown files
-VAULT_DIR="~/Library/Mobile Documents/iCloud~md~obsidian/Documents/vault"
+VAULT_DIR="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/vault"
 SOURCE_DIR="zettelkasten"
 DEST_DIR="notes"
 
@@ -10,7 +10,7 @@ find "$VAULT_DIR/$SOURCE_DIR" -type f -name "*.md" | while read -r file; do
   echo "Processing $file"
 
   # Extract the tag from the file. This assumes the tag is on the line immediately following "tags:"
-  tag=${awk '/tags:/{getline; print; exit}' "$file" | sed -e 's/^ *- *//' -e 's/^ *//;s/ *S//'}
+  tag=$(awk '/tags:/{getline; print; exit}' "$file" | sed -e 's/^ *- *//' -e 's/^ *//;s/ *$//')
 
   echo "Found tag: $tag"
 
