@@ -128,12 +128,8 @@ starship init fish | source
 fish_add_path /Users/luke/.spicetify
 
 set -x PATH $PATH $GOPATH/bin
-set -x PATH $PATH $HOME/Developer/scripts
+set -x PATH $PATH $HOME/.bin
 
-# obsidian review
-function orev
- nvim $HOME/Library/Mobile\ Documents/iCloud\~md\~obsidian/Documents/vault/inbox/*.md
-end
 
 
 # bun
