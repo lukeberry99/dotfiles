@@ -1,0 +1,3 @@
+#!/bin/zsh
+
+nvim $HOME/Library/Mobile\ Documents/iCloud\~md\~obsidian/Documents/vault/inbox/*.md
