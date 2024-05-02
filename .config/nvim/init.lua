@@ -90,7 +90,7 @@ vim.keymap.set("n", "<leader>of", ":s/\\(# \\)[^_]*_/\\1/ | s/-/ /g<cr>", { desc
 vim.keymap.set(
 	"n",
 	"<leader>ok",
-	":!mv '%p' ~/Library/Mobile Documents/iCloud~md~obsidian/Documents/vault/zettelkasten<cr>:bd<cr>",
+	":!mv '%' ~/Library/Mobile\\ Documents/iCloud\\~md\\~obsidian/Documents/vault/zettelkasten<cr>:bd<cr>",
 	{
 		desc = "[O]bsidian [K]eep",
 	}
@@ -210,6 +210,10 @@ require("lazy").setup({
 				})
 			end, {
 				desc = "[O]bsidian [G]rep",
+			})
+			-- grep for files in full vault
+			vim.keymap.set("n", "<leader>obl", ":ObsidianBacklinks<cr>", {
+				desc = "[O]bsidian [B]ack[l]inks",
 			})
 
 			vim.keymap.set("n", "<leader>/", function()
