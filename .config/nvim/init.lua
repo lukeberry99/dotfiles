@@ -597,5 +597,10 @@ require("lazy").setup({
 	{ "ellisonleao/glow.nvim", config = true, cmd = "Glow" },
 	{
 		"tpope/vim-fugitive",
+		keys = {
+			{ "<leader>gg", "<cmd>Git<cr>", { desc = "Git" } },
+			{ "<leader>gp", "<cmd>Git pull<cr>", { desc = "Git pull" } },
+			{ "<leader>gP", "<cmd>Git push<cr>", { desc = "Git pull" } },
+		},
 	},
 })
