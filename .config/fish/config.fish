@@ -129,9 +129,6 @@ fish_add_path /Users/luke/.spicetify
 
 set -x PATH $PATH $GOPATH/bin
 set -x PATH $PATH $HOME/.bin
-
-
-
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH

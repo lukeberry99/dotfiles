@@ -1,3 +1,3 @@
 # fnm
-set PATH "$HOME/Library/Application Support/fnm" $PATH
-fnm env | source
+set PATH "/opt/homebrew/bin" $PATH
+fnm env --use-on-cd | source
