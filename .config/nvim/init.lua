@@ -460,10 +460,20 @@ require("lazy").setup({
 	},
 	{
 		"echasnovski/mini.nvim",
+		keys = {
+			{
+				"<leader>e",
+				function()
+					require("mini.files").open()
+				end,
+				{ desc = "Open [E]xplorer" },
+			},
+		},
 		config = function()
 			require("mini.ai").setup({ n_lines = 500 })
 			require("mini.surround").setup()
 			require("mini.starter").setup()
+			require("mini.files").setup()
 
 			local statusline = require("mini.statusline")
 			statusline.setup({ use_icons = vim.g.have_nerd_font })
@@ -517,6 +527,7 @@ require("lazy").setup({
 	},
 	{
 		"stevearc/oil.nvim",
+		enabled = false,
 		opts = {},
 		keys = {
 			{ "<leader>e", "<cmd>Oil<cr>", { desc = "Open [E]xplorer" } },
