@@ -566,6 +566,7 @@ require("lazy").setup({
 	},
 	{
 		"epwalsh/obsidian.nvim",
+		enabled = false,
 		version = "*",
 		lazy = true,
 		ft = "markdown",
@@ -612,10 +613,24 @@ require("lazy").setup({
 	{ "ellisonleao/glow.nvim", config = true, cmd = "Glow" },
 	{
 		"tpope/vim-fugitive",
+		enabled = false,
 		keys = {
 			{ "<leader>gg", "<cmd>Git<cr>", { desc = "Git" } },
 			{ "<leader>gp", "<cmd>Git pull<cr>", { desc = "Git pull" } },
 			{ "<leader>gP", "<cmd>Git push<cr>", { desc = "Git pull" } },
 		},
+	},
+	{
+		"NeogitOrg/neogit",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"sindrets/diffview.nvim",
+			"nvim-telescope/telescope.nvim",
+		},
+		keys = {
+			{ "<leader>gg", "<cmd>Neogit<CR>", { desc = "Open Neogit" } },
+			{ "<leader>gc", "<cmd>Neogit commit<CR>", { desc = "Open Neogit Commit" } },
+		},
+		config = true,
 	},
 })
