@@ -1,4 +1,5 @@
 -- Config
+local State = {}
 vim.g.mapleader = " "
 vim.g.maplocaloeader = " "
 
@@ -75,26 +76,25 @@ vim.keymap.set("n", "<leader>bdd", "<cmd>bd<cr>", { desc = "[B]uffer [D]elete" }
 vim.keymap.set("n", "<leader>bda", "<cmd>%bd<cr>", { desc = "[B]uffer [D]elete [A]ll" })
 vim.keymap.set("n", "<leader>bdb", "<cmd>%bd|e#<cr>", { desc = "[B]uffer [D]elete [B]ut this one" })
 
+-- Mini
+vim.keymap.set("n", "<leader>e", "<cmd>lua ToggleMiniFiles()<CR>", {})
+
 -- Obsidian
-vim.keymap.set("n", "<leader>oo", ":cd ~/Library/Mobile Documents/iCloud~md~obsidian/Documents/vault<cr>", {
+vim.keymap.set("n", "<leader>oo", ":cd ~/vault<cr>", {
 	desc = "[O]bsidian [O]pen Vault",
 })
 vim.keymap.set("n", "<leader>on", ":ObsidianTemplate note<cr> :lua vim.cmd([[1,/^\\S/s/^\\n\\{1,}//]])<cr>", {
 	desc = "[O]bsidian [N]ew Note",
 })
+
 -- strip date from note title and replace dashes with spaces
 -- must have cursor on title
 vim.keymap.set("n", "<leader>of", ":s/\\(# \\)[^_]*_/\\1/ | s/-/ /g<cr>", { desc = "[O]bsidian [F]ormat" })
 
 -- move file in current buffer to zettelkasten folder
-vim.keymap.set(
-	"n",
-	"<leader>ok",
-	":!mv '%' ~/Library/Mobile\\ Documents/iCloud\\~md\\~obsidian/Documents/vault/zettelkasten<cr>:bd<cr>",
-	{
-		desc = "[O]bsidian [K]eep",
-	}
-)
+vim.keymap.set("n", "<leader>ok", ":!mv '%' ~/vault/zettelkasten<cr>:bd<cr>", {
+	desc = "[O]bsidian [K]eep",
+})
 -- delete file in current buffer
 vim.keymap.set("n", "<leader>odd", ":!rm '%:p'<cr>:bd<cr>", { desc = "[O]bsidian [D]elete" })
 
@@ -173,6 +173,9 @@ require("lazy").setup({
 		},
 		config = function()
 			require("telescope").setup({
+				defaults = {
+					path_display = { "smart" },
+				},
 				extensions = {
 					["ui-select"] = {
 						require("telescope.themes").get_dropdown(),
@@ -198,7 +201,7 @@ require("lazy").setup({
 			-- search for files in full vault
 			vim.keymap.set("n", "<leader>os", function()
 				builtin.find_files({
-					search_dirs = { "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/vault" },
+					search_dirs = { "~/vault" },
 				})
 			end, {
 				desc = "[O]bsidian [S]earch",
@@ -206,7 +209,7 @@ require("lazy").setup({
 			-- grep for files in full vault
 			vim.keymap.set("n", "<leader>og", function()
 				builtin.live_grep({
-					search_dirs = { "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/vault" },
+					search_dirs = { "~/vault" },
 				})
 			end, {
 				desc = "[O]bsidian [G]rep",
@@ -434,16 +437,14 @@ require("lazy").setup({
 		name = "oxocarbon",
 		priority = 1000,
 		config = function()
-			vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-			vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-			-- vim.cmd([[colorscheme oxocarbon]])
+			vim.cmd([[colorscheme oxocarbon]])
 		end,
 	},
 	{
 		"rose-pine/neovim",
 		name = "rose-pine",
 		config = function()
-			vim.cmd([[colorscheme rose-pine]])
+			-- vim.cmd([[colorscheme rose-pine]])
 		end,
 	},
 	{
@@ -460,26 +461,25 @@ require("lazy").setup({
 	},
 	{
 		"echasnovski/mini.nvim",
-		keys = {
-			{
-				"<leader>e",
-				function()
-					require("mini.files").open()
-				end,
-				{ desc = "Open [E]xplorer" },
-			},
-		},
+		event = "VimEnter",
 		config = function()
 			require("mini.ai").setup({ n_lines = 500 })
 			require("mini.surround").setup()
 			require("mini.starter").setup()
-			require("mini.files").setup()
+			local mf = require("mini.files")
+			mf.setup()
 
 			local statusline = require("mini.statusline")
 			statusline.setup({ use_icons = vim.g.have_nerd_font })
 
 			statusline.section_location = function()
 				return "%2l:%-2v"
+			end
+
+			function ToggleMiniFiles()
+				if not mf.close() then
+					mf.open(vim.api.nvim_buf_get_name(0))
+				end
 			end
 		end,
 	},
@@ -566,7 +566,7 @@ require("lazy").setup({
 	},
 	{
 		"epwalsh/obsidian.nvim",
-		enabled = false,
+		enabled = true,
 		version = "*",
 		lazy = true,
 		ft = "markdown",
@@ -578,7 +578,7 @@ require("lazy").setup({
 				workspaces = {
 					{
 						name = "zettelkasten",
-						path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/vault/",
+						path = "~/vault/",
 					},
 				},
 				notes_subdir = "inbox",

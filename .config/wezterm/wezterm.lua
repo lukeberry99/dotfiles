@@ -5,6 +5,7 @@ local act = wezterm.action
 local config = {
 	color_scheme = "Oxocarbon Dark",
 	font_size = 18.0,
+	font = wezterm.font("Departure Mono"),
 	audible_bell = "Disabled",
 	enable_tab_bar = false,
 	native_macos_fullscreen_mode = false,
