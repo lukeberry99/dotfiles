@@ -1,5 +1,4 @@
 -- Config
-local State = {}
 vim.g.mapleader = " "
 vim.g.maplocaloeader = " "
 
@@ -144,14 +143,14 @@ require("lazy").setup({
 		"folke/which-key.nvim", -- Show pending keybinds
 		event = "VimEnter",
 		config = function()
-			require("which-key").setup()
+			local wk = require("which-key")
+			wk.setup()
 
-			-- Document existing keychains
-			require("which-key").register({
-				["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
-				["<leader>d"] = { name = "[D]ocument", _ = "which_key_ignore" },
-				["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
-				["<leader>s"] = { name = "[W]orkspace", _ = "which_key_ignore" },
+			wk.add({
+				{ "<leader>d", group = "[D]ocument" },
+				{ "<leader>s", group = "[W]orkspace" },
+				{ "<leader>c", group = "[C]ode" },
+				{ "<leader>r", group = "[R]ename" },
 			})
 		end,
 	},
@@ -294,7 +293,7 @@ require("lazy").setup({
 				gopls = {},
 				tailwindcss = {},
 				prettier = {},
-				tsserver = {},
+				ts_ls = {},
 				lua_ls = {
 					settings = {
 						Lua = {
@@ -433,18 +432,10 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"shaunsingh/oxocarbon.nvim",
-		name = "oxocarbon",
-		priority = 1000,
-		config = function()
-			vim.cmd([[colorscheme oxocarbon]])
-		end,
-	},
-	{
 		"rose-pine/neovim",
 		name = "rose-pine",
 		config = function()
-			-- vim.cmd([[colorscheme rose-pine]])
+			vim.cmd([[colorscheme rose-pine]])
 		end,
 	},
 	{

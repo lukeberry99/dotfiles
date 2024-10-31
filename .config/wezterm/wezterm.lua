@@ -2,10 +2,18 @@ local k = require("utils/keys")
 local wezterm = require("wezterm")
 local act = wezterm.action
 
+local appearance_themes = {
+	Light = "Rosé Pine Dawn (base16)",
+	Dark = "Rosé Pine (base16)",
+}
+
+local appearance = wezterm.gui.get_appearance()
+
 local config = {
-	color_scheme = "Oxocarbon Dark",
+	color_scheme = appearance_themes[appearance] or "Rosé Pine (base16)",
 	font_size = 18.0,
-	font = wezterm.font("Departure Mono"),
+	line_height = 1.2,
+	font = wezterm.font("Menlo"),
 	audible_bell = "Disabled",
 	enable_tab_bar = false,
 	native_macos_fullscreen_mode = false,
