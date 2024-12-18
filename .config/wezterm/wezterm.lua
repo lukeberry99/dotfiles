@@ -1,18 +1,18 @@
 local k = require("utils/keys")
 local wezterm = require("wezterm")
 local act = wezterm.action
-
-local appearance_themes = {
-	Light = "Rosé Pine Dawn (base16)",
-	Dark = "Rosé Pine (base16)",
-}
-
-local appearance = wezterm.gui.get_appearance()
+--
+-- local appearance_themes = {
+-- 	Light = "Rosé Pine Dawn (base16)",
+-- 	Dark = "Rosé Pine (base16)",
+-- }
+--
+-- local appearance = wezterm.gui.get_appearance()
 
 local config = {
-	color_scheme = appearance_themes[appearance] or "Rosé Pine (base16)",
+	color_scheme = "Gruvbox Dark (Gogh)",
 	font_size = 18.0,
-	line_height = 1.2,
+	line_height = 1.6,
 	font = wezterm.font("Menlo"),
 	audible_bell = "Disabled",
 	enable_tab_bar = false,
