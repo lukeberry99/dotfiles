@@ -21,10 +21,10 @@ config.underline_thickness = 3
 config.cursor_thickness = 4
 config.underline_position = -6
 
--- config.window_decorations = "RESIZE"
+config.window_decorations = "RESIZE"
 
 -- Fonts
-config.font_size = 14
+config.font_size = 16
 config.font = wezterm.font({ family = "FiraCode Nerd Font" })
 config.bold_brightens_ansi_colors = true
 config.font_rules = {

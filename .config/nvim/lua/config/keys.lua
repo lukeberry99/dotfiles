@@ -27,10 +27,8 @@ end, { desc = "Search Plugin Spec" })
 key("n", "<leader>sf", ":FzfLua files<CR>", { desc = "Search files " })
 key("n", "<leader>sg", ":FzfLua live_grep<CR>", { desc = "Search Grep" })
 key("n", "<leader>sr", ":FzfLua registers<CR>", { desc = "Search registers" })
-key("n", "<leader>sb", ":FzfLua buffers<CR>", { desc = "Search buffers" })
+key("n", "<leader><leader>", ":FzfLua buffers<CR>", { desc = "Search buffers" })
 key("n", "<leader>gc", ":FzfLua git_bcommits<CR>", { desc = "Search file commits" })
-key("n", "<leader>gr", ":FzfLua lsp_references<CR>", { desc = "Search references " })
-key("n", "<leader>ds", ":FzfLua lsp_document_signals<CR>", { desc = "Search document signals" })
 
 -- vim-tmux-navigator
 key("n", "<c-h>", "<cmd>TmuxNavigateLeft<CR>")
@@ -38,3 +36,14 @@ key("n", "<c-j>", "<cmd>TmuxNavigateDown<CR>")
 key("n", "<c-k>", "<cmd>TmuxNavigateUp<CR>")
 key("n", "<c-l>", "<cmd>TmuxNavigateRight<CR>")
 key("n", "<c-\\>", "<cmd>TmuxNavigatePrevious<CR>")
+
+-- lsp
+key("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP: Rename" })
+key("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP: Code Action" })
+key("n", "K", vim.lsp.buf.hover, { desc = "LSP: Hover Docs" })
+key("n", "gD", vim.lsp.buf.declaration, { desc = "LSP: Goto Declaration" })
+key("n", "gd", vim.lsp.buf.definition, { desc = "LSP: Goto Definition" })
+-- fzf-lua LSP
+key("n", "gr", ":FzfLua lsp_references<CR>", { desc = "Search references " })
+key("n", "<leader>ds", ":FzfLua lsp_document_symbols<CR>", { desc = "Search document symbols" })
+key("n", "<leader>ws", ":FzfLua lsp_live_workspace_symbols<CR>", { desc = "Search workspace symbols" })

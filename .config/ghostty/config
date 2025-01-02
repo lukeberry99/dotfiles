@@ -1,0 +1,13 @@
+theme = "/Users/luke/.local/share/nvim/lazy/ashen.nvim/extras/ghostty/ashen"
+font-size = 18
+cursor-style = block
+shell-integration-features = no-cursor,sudo,no-title
+adjust-cell-height = 35%
+
+mouse-hide-while-typing = true
+mouse-scroll-multiplier = 2
+
+window-padding-balance = true
+macos-titlebar-style = transparent
+window-colorspace = "display-p3"
+
