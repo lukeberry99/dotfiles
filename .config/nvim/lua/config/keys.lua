@@ -43,7 +43,11 @@ key("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP: Code Action" })
 key("n", "K", vim.lsp.buf.hover, { desc = "LSP: Hover Docs" })
 key("n", "gD", vim.lsp.buf.declaration, { desc = "LSP: Goto Declaration" })
 key("n", "gd", vim.lsp.buf.definition, { desc = "LSP: Goto Definition" })
+
 -- fzf-lua LSP
 key("n", "gr", ":FzfLua lsp_references<CR>", { desc = "Search references " })
 key("n", "<leader>ds", ":FzfLua lsp_document_symbols<CR>", { desc = "Search document symbols" })
 key("n", "<leader>ws", ":FzfLua lsp_live_workspace_symbols<CR>", { desc = "Search workspace symbols" })
+
+-- neo-tree
+key("n", "<leader>e", ":Neotree toggle<CR>", { desc = "Toggle neotree" })
