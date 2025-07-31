@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+pushd ~/repos/github.com/lukeberry99/dev
+./configure
+popd

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+pushd ~/repos/github.com/lukeberry99/dev || exit
+git add .
+git commit -m "[$(date '+%Y-%m-%d %H:%M:%S')] Automated dev commit"
+git push
+popd || exit

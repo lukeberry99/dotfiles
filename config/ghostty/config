@@ -1,0 +1,14 @@
+theme=catppuccin-mocha
+
+shell-integration-features = no-cursor,no-sudo,no-title
+
+title="Ghostty"
+
+font-size=14
+font-feature=-liga
+font-thicken=true 
+
+background-opacity=0.75
+background-blur-radius=20
+
+keybind=alt+enter=toggle_window_decorations

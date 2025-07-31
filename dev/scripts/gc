@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+# Function to parse the git URL and return the directory path
+parse_git_url() {
+    local url="$1"
+    local domain
+    local org
+    local repo
+    local path_part
+
+    # Remove the protocol (https:// or ssh://)
+    url="${url#*://}"
+
+    # Remove the username@ part if present
+    url="${url#*@}"
+
+    # For SSH URLs with port numbers, handle the special case
+    if [[ "$url" =~ ^([^:/]+):([0-9]+)/(.+)$ ]]; then
+        # URL has format: domain:port/path
+        domain="${BASH_REMATCH[1]}"
+        path_part="${BASH_REMATCH[3]}"
+    elif [[ "$url" =~ ^([^/]+)/(.+)$ ]]; then
+        # URL has format: domain/path (no port)
+        domain="${BASH_REMATCH[1]}"
+        path_part="${BASH_REMATCH[2]}"
+    else
+        # Fallback: treat the whole thing as path
+        domain="unknown"
+        path_part="$url"
+    fi
+
+    # Parse org and repo from the path
+    org=$(echo "$path_part" | cut -d'/' -f1)
+    repo=$(echo "$path_part" | cut -d'/' -f2)
+
+    if [[ "$repo" == *.git ]]; then
+        repo="${repo%.git}"
+    fi
+
+    echo "$domain/$org/$repo"
+}
+
+clone_repo() {
+    local input="$1"
+    local base_dir="$HOME/repos"
+    local dir_path
+    local url
+
+    # Extract the last argument as the URL
+    url=$(echo "$input" | awk '{print $NF}')
+
+    dir_path=$(parse_git_url "$url")
+
+    mkdir -p "$base_dir/$dir_path"
+
+    git clone "$url" "$base_dir/$dir_path"
+
+    echo "Cloned into: $base_dir/$dir_path"
+}
+
+if [ -z "$1" ]; then
+    echo "Usage: $0 <git-url>"
+    exit 1
+fi
+
+clone_repo "$*"

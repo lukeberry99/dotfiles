@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+# Check if both files are provided
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 fileA fileB"
+    exit 1
+fi
+
+fileA="$1"
+fileB="$2"
+
+# Check if both files exist
+if [ ! -f "$fileA" ]; then
+    echo "File $fileA does not exist."
+    exit 1
+fi
+
+if [ ! -f "$fileB" ]; then
+    echo "File $fileB does not exist."
+    exit 1
+fi
+
+# Loop through each line in fileA and check if it exists in fileB
+while IFS= read -r line; do
+    if ! grep -Fxq "$line" "$fileB"; then
+        echo "Line not found in $fileB: $line"
+    fi
+done < "$fileA"
