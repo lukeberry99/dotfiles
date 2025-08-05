@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+gh repo create $1 --private
+gc https://github.com/$1
