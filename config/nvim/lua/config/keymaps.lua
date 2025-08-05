@@ -11,6 +11,8 @@ key("<leader>sg", "FzfLua live_grep", "n") -- Grep across entire project
 key("<leader>fc", "FzfLua git_bcommits", "n") -- Search commits
 key("<leader><leader>", "FzfLua buffers", "n") -- Find open buffers
 
+key("<leader>rr", "e! %", "n")
+
 -- Y to EOL
 vim.keymap.set("n", "Y", "y$") -- Yank to EOL
 
