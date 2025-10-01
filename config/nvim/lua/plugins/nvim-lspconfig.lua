@@ -110,7 +110,7 @@ local config = function()
 
   vim.lsp.enable({
     "gopls", "lua_ls", "jsonls", "pyright", "ts_ls",
-    "bashls", "emmet_ls", "dockerls", "clagd", "efm",
+    "bashls", "emmet_ls", "dockerls", "clangd", "efm",
   })
 end
 
