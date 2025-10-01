@@ -7,7 +7,7 @@ vim.opt.scrolloff = 10
 vim.opt.sidescrolloff = 8
 
 -- Indentation
-vim.opt.tabstop = 2	
+vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
 vim.opt.expandtab = true
@@ -34,7 +34,6 @@ vim.opt.pumblend = 10
 vim.opt.winblend = 0
 vim.opt.conceallevel = 0
 vim.opt.concealcursor = ""
-vim.opt.lazyredraw = true
 vim.opt.synmaxcol = 300
 
 -- File handling
@@ -61,6 +60,10 @@ vim.opt.mouse = "a"
 vim.opt.clipboard:append("unnamedplus")
 vim.opt.modifiable = true
 vim.opt.encoding = "UTF-8"
+
+-- Better splits
+vim.opt.splitright = true
+vim.opt.splitbelow = true
 
 -- Cursor settings
 vim.opt.guicursor = "n-v-c:block,i-ci-ve:block,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
@@ -141,7 +144,7 @@ local terminal_instances = {}
 
 local function create_floating_terminal(command, instance_name)
   instance_name = instance_name or "default"
-  
+
   -- Initialize instance if it doesn't exist
   if not terminal_instances[instance_name] then
     terminal_instances[instance_name] = {
@@ -151,9 +154,9 @@ local function create_floating_terminal(command, instance_name)
       command = command
     }
   end
-  
+
   local state = terminal_instances[instance_name]
-  
+
   -- If terminal is already open, close it (toggle behavior)
   if state.is_open and vim.api.nvim_win_is_valid(state.win) then
     vim.api.nvim_win_close(state.win, false)
@@ -164,7 +167,7 @@ local function create_floating_terminal(command, instance_name)
   -- Create buffer if it doesn't exist or is invalid
   if not state.buf or not vim.api.nvim_buf_is_valid(state.buf) then
     state.buf = vim.api.nvim_create_buf(false, true)
-    vim.api.nvim_buf_set_option(state.buf, 'bufhidden', 'hide')
+    vim.bo[state.buf].bufhidden = 'hide'
   end
 
   -- Calculate window dimensions
@@ -185,9 +188,8 @@ local function create_floating_terminal(command, instance_name)
   })
 
   -- Set transparency for the floating window
-  vim.api.nvim_win_set_option(state.win, 'winblend', 0)
-  vim.api.nvim_win_set_option(state.win, 'winhighlight',
-    'Normal:FloatingTermNormal,FloatBorder:FloatingTermBorder')
+  vim.wo[state.win].winblend = 0
+  vim.wo[state.win].winhighlight = 'Normal:FloatingTermNormal,FloatBorder:FloatingTermBorder'
 
   -- Define highlight groups for transparency
   vim.api.nvim_set_hl(0, "FloatingTermNormal", { bg = "none" })
