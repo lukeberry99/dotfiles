@@ -1,9 +1,9 @@
--- Leader
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Lazy
+require("config.options")
+require("config.autocmds")
+require("config.terminal")
 require("config.lazy")
-require("config.core")
 require("config.keymaps")
 

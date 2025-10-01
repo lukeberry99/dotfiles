@@ -43,11 +43,10 @@ return {
 	end,
 	dependencies = {
 		"onsails/lspkind.nvim",
+		"hrsh7th/cmp-path",
 		{
 			"L3MON4D3/LuaSnip",
-			-- follow latest release.
-			version = "2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-			-- install jsregexp (optional!).
+			version = "2.*",
 			build = "make install_jsregexp",
 		},
 	},
