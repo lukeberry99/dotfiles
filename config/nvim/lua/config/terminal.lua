@@ -56,7 +56,7 @@ local function create_floating_terminal(command, instance_name)
   end
 
   if not has_terminal then
-    vim.fn.termopen(command or os.getenv("SHELL"))
+    vim.fn.jobstart(command or vim.o.shell, { term = true })
   end
 
   state.is_open = true
