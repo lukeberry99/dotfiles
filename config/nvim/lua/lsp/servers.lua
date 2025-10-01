@@ -7,7 +7,7 @@ M.typescript_organise_imports = {
       command = "_typescript.organizeImports",
       arguments = { vim.fn.expand("%:p") },
     }
-    vim.lsp.buf.execute_command(params)
+    vim.lsp.buf_request(0, "workspace/executeCommand", params)
   end,
 }
 
