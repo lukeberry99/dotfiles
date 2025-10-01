@@ -17,6 +17,9 @@ local mason_lspconfig = {
 	"mason-org/mason-lspconfig.nvim",
 	event = "BufReadPre",
 	dependencies = "mason-org/mason.nvim",
+  opts = {
+    automatic_installation = true,
+  },
 }
 
 return {
