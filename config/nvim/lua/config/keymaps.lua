@@ -1,38 +1,36 @@
-local key = require("util.keymapper").mapvimkey
-
 -- Buffer navigation
-key("<leader>bn", ":bnext<CR>", "n") -- Next buffer
-key("<leader>bp", ":bprevious<CR>", "n") -- Previous buffer
-key("<leader>bd", ":bdelete<CR>", "n") -- Delete buffer
+vim.keymap.set("n", "<leader>bn", ":bnext<CR>")
+vim.keymap.set("n", "<leader>bp", ":bprevious<CR>")
+vim.keymap.set("n", "<leader>bd", ":bdelete<CR>")
 
 -- FZF-LUA
-key("<leader>sf", "FzfLua files", "n") -- Find files
-key("<leader>sg", "FzfLua live_grep", "n") -- Grep across entire project 
-key("<leader>fc", "FzfLua git_bcommits", "n") -- Search commits
-key("<leader><leader>", "FzfLua buffers", "n") -- Find open buffers
+vim.keymap.set("n", "<leader>sf", "<cmd>FzfLua files<CR>")
+vim.keymap.set("n", "<leader>sg", "<cmd>FzfLua live_grep<CR>")
+vim.keymap.set("n", "<leader>fc", "<cmd>FzfLua git_bcommits<CR>")
+vim.keymap.set("n", "<leader><leader>", "<cmd>FzfLua buffers<CR>")
 
-key("<leader>rr", "e! %", "n")
+vim.keymap.set("n", "<leader>rr", ":e! %<CR>")
 
 -- Y to EOL
-vim.keymap.set("n", "Y", "y$") -- Yank to EOL
+vim.keymap.set("n", "Y", "y$")
 
 -- Center screen when jumping
-vim.keymap.set("n", "<C-d>", "<C-d>zz") -- Half page down (centered)
-vim.keymap.set("n", "<C-u>", "<C-u>zz") -- Half page up (centered)
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 -- Splitting & Resizing
-key("<leader>sv", ":vsplit<CR>", "n") -- Split window vertically
-key("<leader>sh", ":split<CR>", "n") -- Split window horizontally
-key("<C-Up>", ":resize +2<CR>", "n") -- Increase window height
-key("<C-Down>", ":resize -2<CR>", "n") -- Decrease window height
-key("<C-Right>", ":vertical resize +2<CR>", "n") -- Increase window width
-key("<C-Left>", ":vertical resize -2<CR>", "n") -- Decrease window width
+vim.keymap.set("n", "<leader>sv", ":vsplit<CR>")
+vim.keymap.set("n", "<leader>sh", ":split<CR>")
+vim.keymap.set("n", "<C-Up>", ":resize +2<CR>")
+vim.keymap.set("n", "<C-Down>", ":resize -2<CR>")
+vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>")
+vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>")
 
 -- Better window navigation
-vim.keymap.set("n", "<C-h>", "<C-w>h") -- Move to left window 
-vim.keymap.set("n", "<C-j>", "<C-w>j") -- Move to bottom window 
-vim.keymap.set("n", "<C-k>", "<C-w>k") -- Move to top window 
-vim.keymap.set("n", "<C-l>", "<C-w>l") -- Move to right window 
+vim.keymap.set("n", "<C-h>", "<C-w>h")
+vim.keymap.set("n", "<C-j>", "<C-w>j")
+vim.keymap.set("n", "<C-k>", "<C-w>k")
+vim.keymap.set("n", "<C-l>", "<C-w>l") 
 
 -- Quit window
 local function smart_quit()
@@ -49,15 +47,15 @@ end
 vim.keymap.set("n", "q", smart_quit)
 
 -- Better line indenting in visual mode
-vim.keymap.set("n", "<", "<gv") -- Indent left and reselect
-vim.keymap.set("n", ">", ">gv") -- Indent right and reselect
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
 
 -- Quick file navigation
-key("<leader>e", ":Oil<CR>", "n") -- Open file explorer
+vim.keymap.set("n", "<leader>e", ":Oil<CR>")
 
 -- Vim fugitive
-key("<leader>gg", "Git", "n")
-key("<leader>gb", "G blame", "n")
+vim.keymap.set("n", "<leader>gg", "<cmd>Git<CR>")
+vim.keymap.set("n", "<leader>gb", "<cmd>G blame<CR>")
 
 -- Copy full file-path
 vim.keymap.set("n", "<leader>pa", function() 
@@ -67,11 +65,10 @@ vim.keymap.set("n", "<leader>pa", function()
 end)
 
 -- Terminal
-vim.keymap.set("n", "<leader>t", FloatingTerminal, { noremap = true, silent = true, desc = "Toggle floating terminal" })
-vim.keymap.set("n", "<leader>lg", FloatingLazygit, { noremap = true, silent = true, desc = "Toggle floating lazygit" })
-vim.keymap.set("n", "<leader>ht", FloatingHtop, { noremap = true, silent = true, desc = "Toggle floating htop" })
+vim.keymap.set("n", "<leader>t", FloatingTerminal, { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>lg", FloatingLazygit, { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>ht", FloatingHtop, { noremap = true, silent = true })
 
--- Close any floating terminal from terminal mode
 vim.keymap.set("t", "<Esc>", function()
   for _, state in pairs(terminal_instances) do
     if state.is_open and vim.api.nvim_win_is_valid(state.win) then
@@ -80,4 +77,4 @@ vim.keymap.set("t", "<Esc>", function()
       break
     end
   end
-end, { noremap = true, silent = true, desc = "Close floating terminal from terminal mode" })
+end, { noremap = true, silent = true })
