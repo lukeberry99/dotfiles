@@ -6,3 +6,4 @@ addToPath() {
 
 addToPath $HOME/.dev/scripts
 addToPath $HOME/.dev/bin
+addToPath $(go env GOPATH)/bin

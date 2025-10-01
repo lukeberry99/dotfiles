@@ -1,0 +1,171 @@
+version: "1.0"
+
+homebrew:
+  auto_update: true
+  cleanup_after: true
+
+logging:
+  level: "info"
+  format: "console"
+
+dotfiles:
+  source_root: "/Users/luke/repos/github.com/lukeberry99/dotfiles"
+  backup_dir: "~/.devtool/backups"
+  strategy: "copy"
+  mappings:
+    "config/aerospace": "~/config/aerospace"
+    "config/ghostty": "~/.config/ghostty"
+    "config/lazygit": "~/.config/lazygit"
+    "config/tmux": "~/.config/tmux"
+    "config/nvim": "~/.config/nvim"
+    "config/gh": "~/.config/gh"
+    "config/opencode": "~/.config/opencode"
+    "dev": "~/.dev"
+    "zshrc": "~/.zshrc"
+    "zprofile": "~/.zprofile"
+    "tmux-sessionizer": "~/.tmux-sessionizer"
+
+tools:
+  aerospace:
+    source: "homebrew"
+    homebrew_args: ["--cask", "nikitabobko/tap/aerospace"]
+    enabled: true
+
+  love:
+    source: "homebrew"
+    enabled: true
+  slides:
+    source: "homebrew"
+    enabled: true
+  presenterm:
+    source: "homebrew"
+    enabled: true
+  typst:
+    source: "homebrew"
+    enabled: true
+    
+  go:
+    source: "homebrew"
+    enabled: true
+  golang-migrate:
+    source: "homebrew"
+    enabled: true
+  golangci-lint:
+    source: "homebrew"
+    enabled: true
+
+  neovim:
+    source: "build"
+    version: "nightly"
+    installed_binary: "nvim"
+    version_command: "nvim --version | head -1 | awk '{print $2}'"
+    build_config:
+      repository: "https://github.com/neovim/neovim.git"
+      dependencies: ["cmake", "gettext", "lua"]
+      build_steps:
+        - "make CMAKE_BUILD_TYPE=RelWithDebInfo"
+      install_steps:
+        - "sudo make install"
+    enabled: true
+
+  fnm:
+    source: "homebrew"
+    enabled: true
+
+  ghostty:
+    source: "homebrew"
+    cask: true
+    app_name: "Ghostty"
+    enabled: true
+  syncthing:
+    source: "homebrew"
+    cask: true
+    app_name: "Ghostty"
+    enabled: true
+  obsidian:
+    source: "homebrew"
+    cask: true
+    app_name: "Obsidian"
+    enabled: true
+  raycast:
+    source: "homebrew"
+    cask: true
+    app_name: "Raycast"
+    enabled: true
+  cameracontroller:
+    source: "homebrew"
+    cask: true
+    app_name: "CameraController"
+    enabled: true
+
+  git:
+    source: "homebrew"
+    enabled: true
+  git-delta:
+    source: "homebrew"
+    enabled: true
+  ripgrep:
+    source: "homebrew"
+    enabled: true
+  jq:
+    source: "homebrew"
+    enabled: true
+  fzf:
+    source: "homebrew"
+    enabled: true
+  k9s:
+    source: "homebrew"
+    version_command: "k9s version | grep Version | awk '{print $2}'"
+    enabled: true
+  sqlc:
+    source: "homebrew"
+    enabled: true
+  figlet:
+    source: "homebrew"
+    enabled: true
+  bat:
+    source: "homebrew"
+    enabled: true
+  ranger:
+    source: "homebrew"
+    enabled: true
+  curl:
+    source: "homebrew"
+    enabled: true
+  lazygit:
+    source: "homebrew"
+    enabled: true
+  tailscale:
+    source: "homebrew"
+    enabled: true
+  tmux:
+    source: "homebrew"
+    enabled: true
+  starship:
+    source: "homebrew"
+    enabled: true
+  tree:
+    source: "homebrew"
+    enabled: true
+  protobuf:
+    source: "homebrew"
+    enabled: true
+  awscli:
+    source: "homebrew"
+    enabled: true
+
+  lua-language-server:
+    source: "homebrew"
+    enabled: true
+  typescript-language-server:
+    source: "homebrew"
+    enabled: true
+  pyright:
+    source: "homebrew"
+    enabled: true
+  gopls:
+    source: "homebrew"
+    enabled: true
+  rust-analyzer:
+    source: "homebrew"
+    enabled: true

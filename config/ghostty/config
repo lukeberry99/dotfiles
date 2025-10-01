@@ -1,14 +1,26 @@
+shell-integration-features = no-cursor,no-sudo,no-title
+title="Ghostty"
+term = xterm-256color
 theme=catppuccin-mocha
 
-shell-integration-features = no-cursor,no-sudo,no-title
 
-title="Ghostty"
+background-opacity = 0.75
+background-blur-radius = 58
 
-font-size=14
-font-feature=-liga
-font-thicken=true 
+font-family = "FiraCode Nerd Font Mono"
+font-thicken = true
+font-size = 11
 
-background-opacity=0.75
-background-blur-radius=20
+macos-titlebar-style = hidden
 
-keybind=alt+enter=toggle_window_decorations
+window-height = 76
+window-width = 250
+
+window-padding-x = 5
+window-padding-y = 7
+
+mouse-hide-while-typing = true
+
+keybind = global:cmd+shift+p=toggle_quick_terminal
+
+font-feature = -dlig

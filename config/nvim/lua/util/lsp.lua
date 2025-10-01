@@ -6,8 +6,8 @@ M.on_attach = function(client, bufnr)
 	local opts = { noremap = true, silent = true, buffer = bufnr }
 
 	key("fd", "Lspsaga finder", "n", opts) -- go to definition
-	key("gd", "Lspsaga peek_definition", "n", opts) -- peak definition
-	key("gD", "Lspsaga goto_definition", "n", opts) -- go to definition
+	key("gD", "Lspsaga peek_definition", "n", opts) -- peak definition
+	key("gd", "Lspsaga goto_definition", "n", opts) -- go to definition
 	key("gS", "vsplit | Lspsaga goto_definition", "n", opts) -- go to definition
 	key("<leader>ca", "Lspsaga code_action", "n", opts) -- see available code actions
 	key("<leader>rn", "Lspsaga rename", "n", opts) -- smart rename
@@ -34,6 +34,13 @@ M.on_attach = function(client, bufnr)
 		key("<leader>db", "DapToggleBreakpoint", "n", opts) -- toggle breakpoint
 		key("<leader>dr", "DapContinue", "n", opts) -- continue/invoke debugger
 		key("<leader>dt", "lua require('dap-python').test_method()", "n", opts) -- run tests
+	end
+
+	if client.name == "gopls" then
+		key("<leader>oi", "lua vim.lsp.buf.code_action({context = {only = {'source.organizeImports'}}, apply = true})", "n", opts) -- organise imports
+		key("<leader>db", "DapToggleBreakpoint", "n", opts) -- toggle breakpoint
+		key("<leader>dr", "DapContinue", "n", opts) -- continue/invoke debugger
+		key("<leader>dt", "lua require('dap-go').debug_test()", "n", opts) -- run tests
 	end
 
 	if client.name == "ts_ls" then
