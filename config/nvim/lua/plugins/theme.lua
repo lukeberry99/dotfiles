@@ -1,9 +1,22 @@
 return {
+  {
+    "rose-pine/neovim",
+    name = "rose-pine-moon",
+    config = function()
+      require("rose-pine").setup({
+        styles = {
+          transparency = true
+        }
+      })
+      vim.cmd("colorscheme rose-pine-moon")
+    end
+  },
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
 		lazy = false,
 		priority = 1000,
+    enabled = false,
 		config = function()
 			require("catppuccin").setup({
 				flavour = "mocha", -- latte, frappe, macchiato, mocha
@@ -53,7 +66,7 @@ return {
 					noice = true,
 				},
 			})
-			vim.cmd("colorscheme catppuccin")
+			-- vim.cmd("colorscheme catppuccin")
 		end,
 	}
 }
