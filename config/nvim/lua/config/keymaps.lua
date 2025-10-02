@@ -30,35 +30,35 @@ vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>")
 vim.keymap.set("n", "<C-h>", "<C-w>h")
 vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
-vim.keymap.set("n", "<C-l>", "<C-w>l") 
+vim.keymap.set("n", "<C-l>", "<C-w>l")
 
--- Quit window
-local function smart_quit()
-  if vim.fn.winnr('$') > 1 then
-    vim.cmd('q')
-  elseif #vim.fn.getbufinfo({buflisted=1}) > 1 then
-    vim.cmd('bdelete')
-  else
-    vim.cmd('enew')
-    vim.cmd('bdelete #')
-  end
-end
-
-vim.keymap.set("n", "q", smart_quit)
+-- -- Quit window
+-- local function smart_quit()
+--   if vim.fn.winnr('$') > 1 then
+--     vim.cmd('q')
+--   elseif #vim.fn.getbufinfo({buflisted=1}) > 1 then
+--     vim.cmd('bdelete')
+--   else
+--     vim.cmd('enew')
+--     vim.cmd('bdelete #')
+--   end
+-- end
+--
+-- vim.keymap.set("n", "q", smart_quit)
 
 -- Better line indenting in visual mode
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
 -- Quick file navigation
-vim.keymap.set("n", "<leader>e", ":Oil<CR>")
+vim.keymap.set("n", "<leader>e", function() require("mini.files").open() end)
 
 -- Vim fugitive
 vim.keymap.set("n", "<leader>gg", "<cmd>Git<CR>")
 vim.keymap.set("n", "<leader>gb", "<cmd>G blame<CR>")
 
 -- Copy full file-path
-vim.keymap.set("n", "<leader>pa", function() 
+vim.keymap.set("n", "<leader>pa", function()
   local path = vim.fn.expand("%:p")
   vim.fn.setreg("+", path)
   print("file:", path)
