@@ -12,7 +12,10 @@ alias github="cd $HOME/repos/github.com/lukeberry99"
 alias lg="lazygit"
 alias n="nvim"
 alias vim="nvim"
-
+alias nconf="nvim $HOME/repos/github.com/lukeberry99/dotfiles/config/nvim"
+alias dconf="nvim $HOME/repos/github.com/lukeberry99/dotfiles/config/devtool/devtool.yaml"
+alias dc="devtool configure"
+alias di="devtool install"
 
 export PATH=$(go env GOPATH)/bin:$PATH
 
