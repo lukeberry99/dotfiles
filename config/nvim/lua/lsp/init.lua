@@ -23,10 +23,9 @@ M.setup = function()
 
   vim.lsp.config.efm = vim.tbl_deep_extend("force", default_config, servers.efm)
 
-  vim.lsp.enable({
-    "gopls", "lua_ls", "jsonls", "pyright", "ts_ls",
-    "bashls", "emmet_ls", "dockerls", "clangd", "efm",
-  })
+  local server_names = vim.tbl_keys(servers.servers)
+  table.insert(server_names, "efm")
+  vim.lsp.enable(servers)
 end
 
 return M

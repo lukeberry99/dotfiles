@@ -13,6 +13,7 @@ M.typescript_organise_imports = {
 
 M.servers = {
   gopls = {},
+  copilot_language_server = {},
   lua_ls = {
     settings = {
       Lua = {
